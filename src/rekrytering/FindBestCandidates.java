@@ -1,11 +1,19 @@
 package rekrytering;
 
+import java.util.Arrays;
+
 public class FindBestCandidates {
-	private static final double MIN_AVG_GRADE = 4.0;
+	private static final double MIN_AVG_GRADE = 4.7;
 
 	public static void main(String[] args) {
-		
-		FileReader.readFromFile("applications_small.txt", 7);
+
+		Applicant[] vigge = FileReader.readFromFile("applications_all.txt", 6969);
+		Applicant[] gustav = findBestCandidates(vigge);
+		Arrays.sort(gustav);
+		for (int g = 0; g < gustav.length; g++) {
+			System.out.println(gustav[g].toString());
+		}
+
 		// Läs från fil (Börja med "applications_small.txt), spara resultatet i en
 		// vektor
 
@@ -19,6 +27,22 @@ public class FindBestCandidates {
 	public static Applicant[] findBestCandidates(Applicant[] applicants) {
 		// Hitta alla kandidater som har medelbetyg över MIN_AVG_GRADE
 		// Lagra alla dessa kandidater i en vektor, returnera vektorn
-		return null; //Byt ut denna rad mot hela din egen lösning
+		int k = 0;
+		for (int i = 0; i < applicants.length; i++) {
+			if (applicants[i].getAvgGrade() > MIN_AVG_GRADE) {
+				k++;
+			}
+		}
+		Applicant[] sebbe = new Applicant[k];
+		int c = 0;
+		for (int j = 0; j < applicants.length; j++) {
+			if (applicants[j].getAvgGrade() > MIN_AVG_GRADE) {
+				sebbe[c] = applicants[j];
+				c++;
+
+				// Byt ut denna rad mot hela din egen lösning
+			}
+		}
+		return sebbe;
 	}
 }
