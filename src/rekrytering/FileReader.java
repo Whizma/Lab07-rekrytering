@@ -11,6 +11,11 @@ public class FileReader {
 	 * Returnerar max nbrOfRows rader från filen som en vektor av Applicant-objekt.
 	 * Läser i filen tills det inte finns fler rader eller tills man läst nbrOfRows
 	 * rader (det som inträffar först). Returnerar null om filen inte finns.
+	 * 
+	 * Lade till rowScan vars uppgift är att läsa antalet Applicantsrader. (Rader som innehåller Applicants) 
+	 * Om användaren endast vill se 5 Applicants är det möjligt, om användaren vill se fler Applicants än vad
+	 * som finns i listan craschar inte programmet. 
+	 * 
 	 */
 	public static Applicant[] readFromFile(String fileName, int nbrOfRows) {
 		Scanner scan;
@@ -23,12 +28,12 @@ public class FileReader {
 			e.printStackTrace();
 			return null;
 		}
-		int bella = 0;
+		int fullLines = 0;
 		while (rowScan.hasNextLine() && !rowScan.nextLine().isEmpty()) {
-			bella++;	
+			fullLines++;	
 		}
-		if (nbrOfRows > bella) {
-			nbrOfRows = bella;
+		if (nbrOfRows > fullLines) {
+			nbrOfRows = fullLines;
 		}
 		Applicant[] applicants = new Applicant[nbrOfRows];
 		int k = 0;

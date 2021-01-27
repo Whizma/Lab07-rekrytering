@@ -21,7 +21,7 @@ public class Applicant implements Comparable<Applicant> {
 		String[] g = gradesAsString.split(",");
 		// Skapa vektorn med heltal
 		grades = new int[g.length];
-		// Iterera över alla betyg för att översätta dessa till ett heltal
+		// Iterera över alla betyg för att översätta dessa till ett heltal. Allt som inte är 1-5 blir 0.
 		for (int i = 0; i < g.length; i++) {
 
 			switch (g[i]) {
@@ -49,8 +49,8 @@ public class Applicant implements Comparable<Applicant> {
 	}
 
 	public double getAvgGrade() {
-		// average = sum of grades / number of courses. OBS INT OCH DOUBLE DUBBELKOLLA
-		// OM FEL
+		// average = sum of grades / number of courses
+		
 		double sumGrades = 0;
 		double average = 0;
 		for (int i = 0; i < grades.length; i++) {

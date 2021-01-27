@@ -7,11 +7,12 @@ public class FindBestCandidates {
 
 	public static void main(String[] args) {
 
-		Applicant[] vigge = FileReader.readFromFile("applications_all.txt", 6969);
-		Applicant[] gustav = findBestCandidates(vigge);
-		Arrays.sort(gustav);
-		for (int g = 0; g < gustav.length; g++) {
-			System.out.println(gustav[g].toString());
+		Applicant[] CandidateList = FileReader.readFromFile("applications_all.txt", 6969);
+		Applicant[] bestCandidateList = findBestCandidates(CandidateList);
+		Arrays.sort(bestCandidateList);
+		System.out.println("Kandidater med högre snittbetyg än" + " " +MIN_AVG_GRADE + ":");
+		for (int g = 0; g < bestCandidateList.length; g++) {
+			System.out.println(bestCandidateList[g].toString());
 		}
 
 		// Läs från fil (Börja med "applications_small.txt), spara resultatet i en
@@ -33,16 +34,15 @@ public class FindBestCandidates {
 				k++;
 			}
 		}
-		Applicant[] sebbe = new Applicant[k];
+		Applicant[] candidate = new Applicant[k];
 		int c = 0;
 		for (int j = 0; j < applicants.length; j++) {
 			if (applicants[j].getAvgGrade() > MIN_AVG_GRADE) {
-				sebbe[c] = applicants[j];
+				candidate[c] = applicants[j];
 				c++;
 
-				// Byt ut denna rad mot hela din egen lösning
 			}
 		}
-		return sebbe;
+		return candidate;
 	}
 }
